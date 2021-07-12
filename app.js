@@ -26,21 +26,23 @@ const io = socket(server, {
     origins: ['http://localhost:5000']
 })
 
-io.on('connection', (client) => {
-    console.log(client.id)
+io.on('connection', (client, roomid) => {
+
+    console.log(roomid);
+    client.join(roomid)
 
     client.on('codeChange', (data) => {
-        client.broadcast.emit('codeChange', data)
+        client.broadcast.to(roomid).emit('codeChange', data)
     })
 
     client.on('changeLanguage', (data) => {
-        client.broadcast.emit('changeLanguage', data)
+        client.broadcast.to(roomid).emit('changeLanguage', data)
     })
 
     client.on('changeInput', (data) => {
-        client.broadcast.emit('changeInput', data)
+        client.broadcast.to(roomid).emit('changeInput', data)
     })
     client.on('changeOutput', (data) => {
-        client.broadcast.emit('changeOutput', data)
+        client.broadcast.to(roomid).emit('changeOutput', data)
     })
 })

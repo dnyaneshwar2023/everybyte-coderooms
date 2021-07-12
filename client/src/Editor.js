@@ -28,10 +28,12 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import MicOffIcon from '@material-ui/icons/MicOff';
 import { useState } from 'react'
 import './index.css';
+import io from 'socket.io-client'
+import { useParams } from 'react-router-dom';
 
-
-import socket from './socketConnection'
-
+const { roomid } = useParams()
+console.log(roomid);
+const socket = io.connect('http://localhost:5000', roomid)
 
 function Editor() {
     // usestate Hooks
