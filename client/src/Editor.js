@@ -75,8 +75,18 @@ function Editor() {
         }), { method: "GET" })
             .then(response => response.json())
             .then(json => {
-                changeOutput(json.stdout)
-                socket.emit('changeOutput', json.stdout)
+                var output = ""
+                if (json.stdout !== null && json.stdout !== "") {
+                    output += json.stdout
+                }
+                if (json.stderr !== null && json.stderr !== "") {
+                    output += json.stderr
+                }
+                if (json.build_stderr !== null && json.build_stderr !== "") {
+                    output += json.build_stderr
+                }
+                changeOutput(output)
+                socket.emit('changeOutput', output)
             })
     }
 
