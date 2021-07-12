@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import AceEditor from "react-ace";
 // Themes
 import "ace-builds/src-noconflict/theme-github";
@@ -31,12 +31,14 @@ import './index.css';
 import io from 'socket.io-client'
 import { useParams } from 'react-router-dom';
 
-const { roomid } = useParams()
-console.log(roomid);
-const socket = io.connect('http://localhost:5000', roomid)
+const socket = io.connect()
 
 function Editor() {
     // usestate Hooks
+    const { roomid } = useParams()
+    useEffect(() => {
+        socket.emit("join", roomid)
+    }, [])
     const [language, changeLanguage] = useState("c_cpp")
     const [fontsize, changeSize] = useState(12)
     const [theme, changeTheme] = useState("monokai")
@@ -88,17 +90,17 @@ function Editor() {
                     output += json.build_stderr
                 }
                 changeOutput(output)
-                socket.emit('changeOutput', output)
+                socket.emit('changeOutput', { output, roomid })
             })
     }
 
     // Socket Client
     socket.on('codeChange', (data) => {
+        console.log(data)
         setCode(data)
     })
 
     socket.on('changeLanguage', (data) => {
-        console.log(data);
         changeLanguage(data)
     })
 
@@ -127,7 +129,7 @@ function Editor() {
 
                         onChange={(e) => {
                             setCode(e)
-                            socket.emit('codeChange', e)
+                            socket.emit('codeChange', { data: e, roomid: roomid })
                         }}
 
                     />
@@ -138,7 +140,8 @@ function Editor() {
                             <h5>Language</h5>
                             <Select defaultValue="c_cpp" value={language} className="mw-120" onChange={(e) => {
                                 changeLanguage(e.target.value)
-                                socket.emit('changeLanguage', e.target.value)
+                                const data = e.target.value
+                                socket.emit('changeLanguage', { data: data, roomid: roomid })
                             }}>
                                 <MenuItem value={"c_cpp"}>C/C++</MenuItem>
                                 <MenuItem value={"java"}>Java</MenuItem>
@@ -213,7 +216,7 @@ function Editor() {
                         editorProps={{ $blockScrolling: true, $onScrollLeftChange: true }}
                         onChange={(e) => {
                             changeInput(e)
-                            socket.emit('changeInput', e)
+                            socket.emit('changeInput', { data: e, roomid: roomid })
                         }}
                     />
                 </div>
