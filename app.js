@@ -17,7 +17,7 @@ app.get('*', (req, res) => {
 });
 
 const server = app.listen(port, () => {
-    console.log("connected")
+    console.log(`connected at port ${port}`)
 })
 
 
