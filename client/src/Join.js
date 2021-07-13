@@ -21,12 +21,17 @@ function Join() {
                     <br />
                     <form action="">
                         <InputLabel variant="standard" color="secondary">Enter Room Code</InputLabel>
-                        <Input required onChange={(e) => {
+                        <Input onChange={(e) => {
                             changeCode(e.target.value)
-                        }}></Input>
+                        }} required="true"></Input>
                         <br />
                         <br />
-                        <Button type="submit" className="createbutton" variant="outlined" color="primary" onClick={() => { joinRoom() }}> Join<CodeIcon /> </Button>
+                        <Button type="submit" className="createbutton" variant="outlined" color="primary" onClick={() => {
+                            if (code) {
+                                joinRoom()
+                            }
+
+                        }}> Join<CodeIcon /> </Button>
                     </form>
                 </div>
 
