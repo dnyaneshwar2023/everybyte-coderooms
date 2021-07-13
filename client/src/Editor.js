@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import AceEditor from "react-ace";
 // Themes
 import "ace-builds/src-noconflict/theme-github";
@@ -21,20 +21,25 @@ import "ace-builds/src-noconflict/ext-beautify"
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
-import ShareIcon from '@material-ui/icons/Share';
+import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
 import Tooltip from '@material-ui/core/Tooltip';
 import MicIcon from '@material-ui/icons/Mic';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import MicOffIcon from '@material-ui/icons/MicOff';
 import { useState } from 'react'
 import './index.css';
+import io from 'socket.io-client'
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { useParams } from 'react-router-dom';
 
-
-import socket from './socketConnection'
-
+const socket = io.connect()
 
 function Editor() {
     // usestate Hooks
+    const { roomid } = useParams()
+    useEffect(() => {
+        socket.emit("join", roomid)
+    }, [])
     const [language, changeLanguage] = useState("c_cpp")
     const [fontsize, changeSize] = useState(12)
     const [theme, changeTheme] = useState("monokai")
@@ -43,6 +48,7 @@ function Editor() {
     const [stdin, changeInput] = useState("");
     const [stdout, changeOutput] = useState("");
 
+    // code runners
     const runner = async () => {
         var runnerid = "";
         await fetch('https://api.paiza.io/runners/create?' + new URLSearchParams({
@@ -75,8 +81,20 @@ function Editor() {
         }), { method: "GET" })
             .then(response => response.json())
             .then(json => {
-                changeOutput(json.stdout)
-                socket.emit('changeOutput', json.stdout)
+                var output = ""
+                if (json.stdout !== null && json.stdout !== "") {
+                    output += json.stdout
+                }
+                if (json.stderr !== null && json.stderr !== "") {
+                    output += json.stderr
+                }
+                if (json.build_stderr !== null && json.build_stderr !== "") {
+                    output += json.build_stderr
+                }
+
+                console.log("hrllo");
+                socket.emit('changeOutput', { data: output, roomid: roomid })
+                changeOutput(output)
             })
     }
 
@@ -86,7 +104,6 @@ function Editor() {
     })
 
     socket.on('changeLanguage', (data) => {
-        console.log(data);
         changeLanguage(data)
     })
 
@@ -115,7 +132,7 @@ function Editor() {
 
                         onChange={(e) => {
                             setCode(e)
-                            socket.emit('codeChange', e)
+                            socket.emit('codeChange', { data: e, roomid: roomid })
                         }}
 
                     />
@@ -126,7 +143,8 @@ function Editor() {
                             <h5>Language</h5>
                             <Select defaultValue="c_cpp" value={language} className="mw-120" onChange={(e) => {
                                 changeLanguage(e.target.value)
-                                socket.emit('changeLanguage', e.target.value)
+                                const data = e.target.value
+                                socket.emit('changeLanguage', { data: data, roomid: roomid })
                             }}>
                                 <MenuItem value={"c_cpp"}>C/C++</MenuItem>
                                 <MenuItem value={"java"}>Java</MenuItem>
@@ -163,9 +181,11 @@ function Editor() {
                                 <MenuItem value={"dracula"}>Dracula</MenuItem>
 
                             </Select>
-                            <Tooltip title="Share" aria-label="share">
-                                <Button className="mx-auto d-flex" id="icons" variant="outlined" color="primary"> <ShareIcon ></ShareIcon></Button>
-                            </Tooltip>
+                            <CopyToClipboard text={window.location.href.toString()}>
+                                <Tooltip title="Copy Room Link" aria-label="share">
+                                    <Button className="mx-auto d-flex" id="icons" variant="outlined" color="primary"> <FileCopyOutlinedIcon /></Button>
+                                </Tooltip>
+                            </CopyToClipboard>
                             <Tooltip title="mic" aria-label="mic">
                                 {
                                     mic ? <Button className="mx-auto d-flex" id="icons" variant="outlined" color="secondary" onClick={() => {
@@ -201,7 +221,7 @@ function Editor() {
                         editorProps={{ $blockScrolling: true, $onScrollLeftChange: true }}
                         onChange={(e) => {
                             changeInput(e)
-                            socket.emit('changeInput', e)
+                            socket.emit('changeInput', { data: e, roomid: roomid })
                         }}
                     />
                 </div>

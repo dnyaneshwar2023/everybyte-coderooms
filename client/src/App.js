@@ -23,7 +23,7 @@ function App() {
       <Switch>
         <Route exact path='/' component={Home} />
         <Route exact path='/create' component={Create} />
-        <Route exact path='/edit' component={Editor} />
+        <Route exact path='/edit/:roomid' component={Editor} />
         <Route exact path="/join" component={Join} />
       </Switch>
     </>
