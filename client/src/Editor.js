@@ -21,7 +21,7 @@ import "ace-builds/src-noconflict/ext-beautify"
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
-import ShareIcon from '@material-ui/icons/Share';
+import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
 import Tooltip from '@material-ui/core/Tooltip';
 import MicIcon from '@material-ui/icons/Mic';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
@@ -29,7 +29,8 @@ import MicOffIcon from '@material-ui/icons/MicOff';
 import { useState } from 'react'
 import './index.css';
 import io from 'socket.io-client'
-import { useParams } from 'react-router-dom';
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { useParams, useLocation } from 'react-router-dom';
 
 const socket = io.connect()
 
@@ -39,6 +40,7 @@ function Editor() {
     useEffect(() => {
         socket.emit("join", roomid)
     }, [])
+    const location = useLocation()
     const [language, changeLanguage] = useState("c_cpp")
     const [fontsize, changeSize] = useState(12)
     const [theme, changeTheme] = useState("monokai")
@@ -179,9 +181,11 @@ function Editor() {
                                 <MenuItem value={"dracula"}>Dracula</MenuItem>
 
                             </Select>
-                            <Tooltip title="Share" aria-label="share">
-                                <Button className="mx-auto d-flex" id="icons" variant="outlined" color="primary"> <ShareIcon ></ShareIcon></Button>
-                            </Tooltip>
+                            <CopyToClipboard text={window.location.href.toString()}>
+                                <Tooltip title="Copy Room Link" aria-label="share">
+                                    <Button className="mx-auto d-flex" id="icons" variant="outlined" color="primary"> <FileCopyOutlinedIcon /></Button>
+                                </Tooltip>
+                            </CopyToClipboard>
                             <Tooltip title="mic" aria-label="mic">
                                 {
                                     mic ? <Button className="mx-auto d-flex" id="icons" variant="outlined" color="secondary" onClick={() => {
