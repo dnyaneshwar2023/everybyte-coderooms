@@ -89,8 +89,10 @@ function Editor() {
                 if (json.build_stderr !== null && json.build_stderr !== "") {
                     output += json.build_stderr
                 }
-                changeOutput(output)
+
+                console.log("hrllo");
                 socket.emit('changeOutput', { data: output, roomid: roomid })
+                changeOutput(output)
             })
     }
 
