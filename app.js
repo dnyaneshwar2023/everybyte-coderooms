@@ -29,7 +29,7 @@ const io = socket(server, {
 io.on('connection', (client) => {
 
     client.on("join", (roomid) => {
-        console.log(client.id);
+        //console.log(client.id);
         client.join(roomid)
     })
 

@@ -90,7 +90,7 @@ function Editor() {
                     output += json.build_stderr
                 }
                 changeOutput(output)
-                socket.emit('changeOutput', { output, roomid })
+                socket.emit('changeOutput', { data: output, roomid: roomid })
             })
     }
 
