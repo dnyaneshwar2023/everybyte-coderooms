@@ -30,7 +30,7 @@ import { useState } from 'react'
 import './index.css';
 import io from 'socket.io-client'
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const socket = io.connect()
 
@@ -40,7 +40,6 @@ function Editor() {
     useEffect(() => {
         socket.emit("join", roomid)
     }, [])
-    const location = useLocation()
     const [language, changeLanguage] = useState("c_cpp")
     const [fontsize, changeSize] = useState(12)
     const [theme, changeTheme] = useState("monokai")
@@ -49,6 +48,7 @@ function Editor() {
     const [stdin, changeInput] = useState("");
     const [stdout, changeOutput] = useState("");
 
+    // code runners
     const runner = async () => {
         var runnerid = "";
         await fetch('https://api.paiza.io/runners/create?' + new URLSearchParams({

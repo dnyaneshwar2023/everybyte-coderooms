@@ -20,7 +20,7 @@ function Create() {
                     <br />
                     <form action="">
                         <InputLabel variant="standard" color="secondary">Room Name</InputLabel>
-                        <Input required></Input>
+                        <Input required="true"></Input>
                         <br />
                         <br />
                         <Button type="submit" className="createbutton" variant="outlined" color="primary" onClick={createRoom}> Create<NoteAddIcon /> </Button>
