@@ -96,7 +96,6 @@ function Editor() {
 
     // Socket Client
     socket.on('codeChange', (data) => {
-        console.log(data)
         setCode(data)
     })
 

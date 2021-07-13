@@ -45,6 +45,6 @@ io.on('connection', (client) => {
         client.broadcast.to(e.roomid).emit('changeInput', e.data)
     })
     client.on('changeOutput', (e) => {
-        client.broadcast.to(e.roomid).emit('changeOutput', e.edata)
+        client.broadcast.to(e.roomid).emit('changeOutput', e.data)
     })
 })
