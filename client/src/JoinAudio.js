@@ -31,4 +31,4 @@ async function startBasicCall(channel) {
 
 
 
-export default startBasicCall
+export { rtc, startBasicCall }
