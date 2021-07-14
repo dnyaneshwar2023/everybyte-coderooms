@@ -31,7 +31,7 @@ import './index.css';
 import io from 'socket.io-client'
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useParams } from 'react-router-dom';
-
+import startBasicCall from './JoinAudio';
 const socket = io.connect()
 
 function Editor() {
@@ -39,6 +39,7 @@ function Editor() {
     const { roomid } = useParams()
     useEffect(() => {
         socket.emit("join", roomid)
+        startBasicCall(roomid)
     }, [])
     const [language, changeLanguage] = useState("c_cpp")
     const [fontsize, changeSize] = useState(12)
