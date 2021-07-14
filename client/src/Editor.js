@@ -31,19 +31,21 @@ import './index.css';
 import io from 'socket.io-client'
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useParams } from 'react-router-dom';
-
+import { rtc, startBasicCall } from './JoinAudio';
 const socket = io.connect()
+
 
 function Editor() {
     // usestate Hooks
     const { roomid } = useParams()
-    useEffect(() => {
+    useEffect(async () => {
         socket.emit("join", roomid)
+        startBasicCall(roomid)
     }, [])
     const [language, changeLanguage] = useState("c_cpp")
     const [fontsize, changeSize] = useState(12)
     const [theme, changeTheme] = useState("monokai")
-    const [mic, changeMic] = useState(false);
+    const [mic, changeMic] = useState(true);
     const [code, setCode] = useState('')
     const [stdin, changeInput] = useState("");
     const [stdout, changeOutput] = useState("");
@@ -189,10 +191,17 @@ function Editor() {
                             <Tooltip title="mic" aria-label="mic">
                                 {
                                     mic ? <Button className="mx-auto d-flex" id="icons" variant="outlined" color="secondary" onClick={() => {
+                                        console.log("otggling")
+
+                                        rtc.localAudioTrack.setEnabled(false)
+
                                         changeMic(!mic)
                                     }}> <MicIcon></MicIcon></Button> :
                                         <Button className="mx-auto d-flex" id="icons" variant="outlined" color="primary" onClick={() => {
+                                            console.log("otggling")
+                                            rtc.localAudioTrack.setEnabled(true)
                                             changeMic(!mic)
+
                                         }}> <MicOffIcon></MicOffIcon></Button>
                                 }
                             </Tooltip>
