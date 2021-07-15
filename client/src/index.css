@@ -1,0 +1,49 @@
+.main_nav{
+  
+}
+
+.mw-120{
+  min-width: 200px;
+}
+
+.options{
+  margin-right: 0px;
+}
+
+#navbarSupportedContent{
+
+}
+.resizable{
+  resize:both;
+  overflow:scroll;
+  
+}
+
+.active_tab{
+  font-weight: bold;
+  border-bottom: 2px solid greenyellow;
+}
+.texteditor{
+  border-style: groove;
+  border-color: black;
+
+}
+
+#icons{
+  width: 100px;
+  height: 40px;
+  margin-top: 20px;  
+}
+.img{
+  width: 600px;
+  margin-left: 20px;
+}
+
+.createbutton{
+  width: 100px;
+}
+
+.mainbtn{
+  width: 200px;
+  height: 50px;
+}
