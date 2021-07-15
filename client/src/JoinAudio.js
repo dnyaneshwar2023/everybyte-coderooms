@@ -6,7 +6,7 @@ const rtc = {
 };
 
 const options = {
-    appId: "73b2e6173ffc4fd8bdd4ea4f60c1936c",
+    appId: "<Agora Web SDK App ID>",
     token: null
 };
 
