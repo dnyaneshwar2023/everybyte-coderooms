@@ -5,17 +5,10 @@ import Home from './Home'
 import Create from './Create'
 import Editor from "./Editor";
 import Join from './Join'
-
-const axios = require('axios')
+import Error from './Error'
 
 function App() {
 
-  const callAPI = async () => {
-    const res = await axios.get('http://localhost:5000/test')
-    console.log(res);
-  }
-
-  callAPI()
 
   return (
     <>
@@ -25,6 +18,7 @@ function App() {
         <Route exact path='/create' component={Create} />
         <Route exact path='/edit/:roomid' component={Editor} />
         <Route exact path="/join" component={Join} />
+        <Route component={Error} />
       </Switch>
     </>
   )

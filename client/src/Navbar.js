@@ -20,11 +20,14 @@ function Navbar() {
 
 
                                 <li className="nav-item">
-                                    <NavLink exact activeClassName="active_tab" className="nav-link" to="/create">Create New Paste</NavLink>
+                                    <NavLink exact activeClassName="active_tab" className="nav-link" to="/create">Create New Room</NavLink>
                                 </li>
 
                                 <li className="nav-item">
                                     <NavLink exact activeClassName="active_tab" className="nav-link" to="/join">Join</NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink exact activeClassName="active_tab" className="nav-link" to="/calendar">Programming Calendar</NavLink>
                                 </li>
 
                             </ul>

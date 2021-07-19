@@ -94,7 +94,7 @@ function Editor() {
                     output += json.build_stderr
                 }
 
-                console.log("hrllo");
+
                 socket.emit('changeOutput', { data: output, roomid: roomid })
                 changeOutput(output)
             })
@@ -191,14 +191,13 @@ function Editor() {
                             <Tooltip title="mic" aria-label="mic">
                                 {
                                     mic ? <Button className="mx-auto d-flex" id="icons" variant="outlined" color="secondary" onClick={() => {
-                                        console.log("otggling")
+
 
                                         rtc.localAudioTrack.setEnabled(false)
 
                                         changeMic(!mic)
                                     }}> <MicIcon></MicIcon></Button> :
                                         <Button className="mx-auto d-flex" id="icons" variant="outlined" color="primary" onClick={() => {
-                                            console.log("otggling")
                                             rtc.localAudioTrack.setEnabled(true)
                                             changeMic(!mic)
 
