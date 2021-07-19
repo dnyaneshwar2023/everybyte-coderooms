@@ -52,3 +52,8 @@
   height:40vh;
   width: 60%;
 }
+
+.card:hover{
+  transform: scale(1.02);
+  box-shadow: 5px 5px 20px black;
+}

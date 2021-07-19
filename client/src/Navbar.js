@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import EventIcon from '@material-ui/icons/Event';
 function Navbar() {
     const title = "<EveryByte / >"
     return (
@@ -27,7 +28,7 @@ function Navbar() {
                                     <NavLink exact activeClassName="active_tab" className="nav-link" to="/join">Join</NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink exact activeClassName="active_tab" className="nav-link" to="/calendar">Programming Calendar</NavLink>
+                                    <NavLink exact activeClassName="active_tab" className="nav-link" to="/calendar"><EventIcon /></NavLink>
                                 </li>
 
                             </ul>
