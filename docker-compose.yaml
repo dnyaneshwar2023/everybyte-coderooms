@@ -1,0 +1,43 @@
+version: '3.2'
+
+services:
+  redis:
+    image: redis:6.2-alpine
+    command: redis-server
+    ports:
+      - 6379:6379
+    networks:
+      - webnet
+
+
+  codeapp:
+    build: ./
+    hostname: codeapp
+    container_name: codeapp
+    depends_on:
+      - redis
+    ports:
+      - 5000:5000
+      - 5001:5001
+      - 5002:5002
+      - 5003:5003
+      - 5004:5004
+    networks:
+      - webnet
+    environment:
+      REDIS_HOST: redis
+  nginx:
+    build:
+      context: ./nginx
+    container_name: proxy
+    hostname: nginx
+    ports:
+        - "80:80" 
+    depends_on:
+        - codeapp
+    networks:
+        - webnet
+    
+    
+networks:
+  webnet:

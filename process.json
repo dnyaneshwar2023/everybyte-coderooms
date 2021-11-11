@@ -1,0 +1,90 @@
+{
+    "apps": [
+        {
+            "name": "app1",
+            "script": "./app.js",
+            "watch": true,
+            "env": {
+                "PORT": "5001"
+            }
+        },
+        {
+            "name": "app2",
+            "script": "./app.js",
+            "watch": true,
+            "env": {
+                "PORT": "5002"
+            }
+        },
+        {
+            "name": "app3",
+            "script": "./app.js",
+            "watch": true,
+            "env": {
+                "PORT": "5003"
+            }
+        },
+        {
+            "name": "app4",
+            "script": "./app.js",
+            "watch": true,
+            "env": {
+                "PORT": "5004"
+            }
+        },
+        {
+            "name": "app0",
+            "script": "./app.js",
+            "watch": true,
+            "env": {
+                "PORT": "5000"
+            }
+        }
+        ,
+        {
+            "name": "app5",
+            "script": "./app.js",
+            "watch": true,
+            "env": {
+                "PORT": "5005"
+            }
+        }
+        ,
+        {
+            "name": "app6",
+            "script": "./app.js",
+            "watch": true,
+            "env": {
+                "PORT": "5006"
+            }
+        }
+        ,
+        {
+            "name": "app7",
+            "script": "./app.js",
+            "watch": true,
+            "env": {
+                "PORT": "5007"
+            }
+        }
+        ,
+        {
+            "name": "app8",
+            "script": "./app.js",
+            "watch": true,
+            "env": {
+                "PORT": "5008"
+            }
+        }
+        ,
+        {
+            "name": "app9",
+            "script": "./app.js",
+            "watch": true,
+            "env": {
+                "PORT": "5009"
+            }
+        }
+
+    ]
+}

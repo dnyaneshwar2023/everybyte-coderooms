@@ -3,6 +3,7 @@ const cors = require('cors')
 const socket = require('socket.io')
 const path = require('path')
 const app = express()
+const redisAdapter =  require('socket.io-redis');
 
 // middlewares
 app.use(cors())
@@ -22,11 +23,16 @@ const server = app.listen(port, () => {
 
 const io = socket(server, {
     cors: true,
-    origins: ['http://localhost:5000']
 })
+
+
+
+io.adapter(redisAdapter({ host: process.env.REDIS_HOST || '127.0.0.1', port: 6379 }));
+
 
 io.on('connection', (client) => {
 
+    console.log('User Joined');
     client.on("join", (roomid) => {
         client.join(roomid)
     })

@@ -32,7 +32,7 @@ import io from 'socket.io-client'
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useParams } from 'react-router-dom';
 import { rtc, startBasicCall } from './JoinAudio';
-const socket = io.connect()
+import { socket } from './socketConnection';
 
 
 function Editor() {
