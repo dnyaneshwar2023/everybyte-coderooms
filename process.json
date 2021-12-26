@@ -40,51 +40,6 @@
                 "PORT": "5000"
             }
         }
-        ,
-        {
-            "name": "app5",
-            "script": "./app.js",
-            "watch": true,
-            "env": {
-                "PORT": "5005"
-            }
-        }
-        ,
-        {
-            "name": "app6",
-            "script": "./app.js",
-            "watch": true,
-            "env": {
-                "PORT": "5006"
-            }
-        }
-        ,
-        {
-            "name": "app7",
-            "script": "./app.js",
-            "watch": true,
-            "env": {
-                "PORT": "5007"
-            }
-        }
-        ,
-        {
-            "name": "app8",
-            "script": "./app.js",
-            "watch": true,
-            "env": {
-                "PORT": "5008"
-            }
-        }
-        ,
-        {
-            "name": "app9",
-            "script": "./app.js",
-            "watch": true,
-            "env": {
-                "PORT": "5009"
-            }
-        }
 
     ]
 }

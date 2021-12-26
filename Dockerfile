@@ -1,4 +1,4 @@
-FROM node:17-alpine
+FROM node:17-alpine as backend
 
 WORKDIR /app
 
@@ -14,10 +14,14 @@ RUN cd client && npm install
 
 COPY . .
 
-
-
 RUN cd client && npm run build
 
 CMD ["pm2-runtime", "process.json"]
+
+
+
+
+
+
 
 
