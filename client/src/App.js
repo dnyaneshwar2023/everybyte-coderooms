@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
-import { Switch, Route } from "react-router-dom";
+import { Routes, Route, Outlet, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Create from "./pages/Create";
 import Editor from "./pages/Editor";
@@ -12,22 +12,19 @@ import AuthContext from "./auth/context";
 import getUser from "./auth/getUser";
 import DrawerConext from "./hooks/Drawer/context";
 import Sidebar from "./components/Sidebar";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(getUser());
   const [drawer, setDrawer] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const store = { user, setUser };
   const drawerStore = { drawer, setDrawer };
 
-  const restoreUser = () => {
-    setUser(getUser());
-  };
-
-  useEffect(() => {
-    restoreUser();
-    setLoaded(true);
-  }, []);
+  // const restoreUser = () => {
+  //   setLoaded(true);
+  //   setUser();
+  // };
 
   return (
     <>
@@ -37,40 +34,54 @@ function App() {
         </DrawerConext.Provider>
       </AuthContext.Provider>
 
-      <Switch>
-        <Route exact path="/" component={Home} />
+      <Routes>
+        <Route path="/" element={<Home />} />
         <Route
-          exact
           path="/create"
-          render={() => (
+          element={
             <AuthContext.Provider value={store}>
-              {user ? <Create /> : <></>}
+              {user != null ? <Create /> : <Navigate to="/login" />}
             </AuthContext.Provider>
-          )}
+          }
         />
         <Route
-          exact
-          path="/edit/:roomid"
-          render={() => (
+          path="/dashboard"
+          element={
             <AuthContext.Provider value={store}>
-              <Editor />
+              {user ? <Dashboard /> : <Navigate to="/login" />}
             </AuthContext.Provider>
-          )}
+          }
         />
-        <Route exact path="/join" component={Join} />
-        <Route exact path="/calendar" component={Calendar} />
         <Route
-          exact
+          path="/edit"
+          element={
+            <AuthContext.Provider value={store}>
+              {user != null ? <Editor /> : <Navigate to="/login" />}
+            </AuthContext.Provider>
+          }
+        >
+          <Route path=":roomid" element={<Outlet />} />
+        </Route>
+        <Route
+          path="/join"
+          element={
+            <AuthContext.Provider value={store}>
+              {user ? <Join /> : <Navigate to="/login" />}
+            </AuthContext.Provider>
+          }
+        />
+        <Route path="/calendar" element={<Calendar />} />
+        <Route
           path="/login"
-          render={() => (
+          element={
             <AuthContext.Provider value={store}>
-              {loaded ? <Login /> : <></>}
+              <Login />
             </AuthContext.Provider>
-          )}
+          }
         />
 
-        <Route component={Error} />
-      </Switch>
+        <Route path="*" element={<Error />} />
+      </Routes>
       <AuthContext.Provider value={store}>
         <DrawerConext.Provider value={drawerStore}>
           <Sidebar />

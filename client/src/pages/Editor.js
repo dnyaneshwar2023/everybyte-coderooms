@@ -32,10 +32,13 @@ import { useParams } from "react-router-dom";
 import { rtc, startBasicCall } from "./JoinAudio";
 import { socket } from "./socketConnection";
 import SaveIcon from "@material-ui/icons/Save";
+import useAuth from "../auth/useAuth";
 
 function Editor() {
   // usestate Hooks
   const { roomid } = useParams();
+  const { user } = useAuth();
+
   useEffect(async () => {
     socket.emit("join", roomid);
     startBasicCall(roomid);
@@ -268,7 +271,6 @@ function Editor() {
                   variant="contained"
                   color="primary"
                   endIcon={<SaveIcon />}
-                  onClick={console.log("Clicked")}
                 >
                   SAVE
                 </Button>

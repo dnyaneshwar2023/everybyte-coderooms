@@ -13,6 +13,7 @@ import AccountItem from "./AccountItem";
 import SidebarItem from "./SidebarItem";
 import useDrawer from "../hooks/Drawer/useDrawer";
 import useAuth from "../auth/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles({
   paper: {
@@ -20,8 +21,9 @@ const useStyles = makeStyles({
   },
 });
 const Sidebar = () => {
+  const navigate = useNavigate();
   const { drawer, toggleDrawer } = useDrawer();
-  const { user } = useAuth();
+  const { user, logOut } = useAuth();
 
   const styles = useStyles();
   return (
@@ -35,15 +37,28 @@ const Sidebar = () => {
       <SidebarItem
         title={"Profile"}
         IconComponent={<AccountBoxOutlinedIcon />}
+        onClick={() => navigate("/profile")}
       />
-      <SidebarItem title={"Create New"} IconComponent={<AddCircleIcon />} />
-      <SidebarItem title={"Join Room"} IconComponent={<ContactlessIcon />} />
+      <SidebarItem
+        title={"Create New"}
+        IconComponent={<AddCircleIcon />}
+        onClick={() => navigate("/create")}
+      />
+      <SidebarItem
+        title={"Join Room"}
+        IconComponent={<ContactlessIcon />}
+        onClick={() => navigate("/join")}
+      />
       <SidebarItem
         title={"Calendar"}
         IconComponent={<CalendarTodayTwoToneIcon />}
       />
 
-      <SidebarItem title={"Log Out"} IconComponent={<ExitToAppTwoToneIcon />} />
+      <SidebarItem
+        title={"Log Out"}
+        IconComponent={<ExitToAppTwoToneIcon />}
+        onClick={() => logOut()}
+      />
       <Button
         onClick={() => toggleDrawer()}
         style={{ position: "absolute", bottom: 10 }}

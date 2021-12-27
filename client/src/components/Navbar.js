@@ -9,7 +9,7 @@ import useAuth from "../auth/useAuth";
 function Navbar() {
   const { drawer, toggleDrawer } = useDrawer();
   const { user } = useAuth();
-  console.log(user);
+
   const title = "<EveryByte / >";
   return (
     <>
@@ -41,33 +41,18 @@ function Navbar() {
             >
               <ul className="navbar-nav ms-auto">
                 <li className="nav-item">
-                  <NavLink
-                    exact
-                    activeClassName="active_tab"
-                    className="nav-link"
-                    to="/"
-                  >
+                  <NavLink className="nav-link" to="/">
                     Home
                   </NavLink>
                 </li>
 
                 <li className="nav-item">
-                  <NavLink
-                    exact
-                    activeClassName="active_tab"
-                    className="nav-link"
-                    to="/about"
-                  >
+                  <NavLink className="nav-link" to="/about">
                     About
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink
-                    exact
-                    activeClassName="active_tab"
-                    className="nav-link"
-                    to="/calendar"
-                  >
+                  <NavLink className="nav-link" to="/calendar">
                     <EventIcon />
                   </NavLink>
                 </li>
@@ -93,12 +78,7 @@ function Navbar() {
                   </li>
                 ) : (
                   <li className="nav-item">
-                    <NavLink
-                      exact
-                      activeClassName="active_tab"
-                      className="nav-link"
-                      to="/login"
-                    >
+                    <NavLink className="nav-link" to="/login">
                       Login
                     </NavLink>
                   </li>

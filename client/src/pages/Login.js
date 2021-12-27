@@ -4,15 +4,20 @@ import { GoogleLogin } from "react-google-login";
 import loginApi from "../apis/login";
 import Cookies from "js-cookie";
 import useAuth from "../auth/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { user, logIn } = useAuth();
+  console.log("user", user);
+  const navigate = useNavigate();
   const onSignIn = async (user) => {
-    const id_token = user.getAuthResponse().id_token;
+    const id_token = await user.getAuthResponse().id_token;
     Cookies.set("authtoken", id_token, { expires: 7 });
     const result = await loginApi(id_token);
+
     if (result.data.status === "success") {
       logIn(id_token);
+      navigate("/dashboard");
     }
   };
 

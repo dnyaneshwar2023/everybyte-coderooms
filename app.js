@@ -36,10 +36,11 @@ app.post("/login", async (req, res) => {
       idToken: id_token,
       audience: CLIENT_ID,
     });
-    console.log(status);
-  } catch (error) {}
 
-  res.send("Hello");
+    res.send({ status: "success" });
+  } catch (error) {
+    res.send({ status: "failed" });
+  }
 });
 
 const io = socket(server, {
