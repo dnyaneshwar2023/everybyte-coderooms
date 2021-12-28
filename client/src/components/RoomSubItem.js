@@ -4,7 +4,8 @@ import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import PersonAddRoundedIcon from "@material-ui/icons/PersonAddRounded";
 import { Button, ListItemText } from "@material-ui/core";
 import InvitePopup from "./InvitePopup";
-
+import { useNavigate } from "react-router-dom";
+import useList from "../hooks/roomlist/useList";
 const styles = {
   item: {
     alignItems: "center",
@@ -22,13 +23,21 @@ const styles = {
   },
 };
 
-const RoomSubItem = () => {
+const RoomSubItem = ({ roomid }) => {
+  const navigate = useNavigate();
+  const { removeItem } = useList();
   const [modal, setModal] = useState(false);
+  const handleDelete = () => {
+    removeItem(roomid);
+  };
   return (
     <>
       <div className="d-flex align-items-center justify-content-center w-100">
         <div style={styles.item} className="d-flex flex-column text-center">
-          <Button style={{ color: "blue" }}>
+          <Button
+            style={{ color: "blue" }}
+            onClick={() => navigate(`/edit/${roomid}`)}
+          >
             <EditRoundedIcon />
           </Button>
         </div>
@@ -38,12 +47,12 @@ const RoomSubItem = () => {
           </Button>
         </div>
         <div style={styles.delete} className="d-flex flex-column text-center">
-          <Button style={{ color: "red" }}>
+          <Button style={{ color: "red" }} onClick={handleDelete}>
             <DeleteRoundedIcon />
           </Button>
         </div>
       </div>
-      <InvitePopup open={modal} handleChange={setModal} />
+      <InvitePopup open={modal} roomid={roomid} handleChange={setModal} />
     </>
   );
 };

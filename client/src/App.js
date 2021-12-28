@@ -13,6 +13,7 @@ import getUser from "./auth/getUser";
 import DrawerConext from "./hooks/Drawer/context";
 import Sidebar from "./components/Sidebar";
 import Dashboard from "./pages/Dashboard";
+import ToastTester from "./pages/ToastTester";
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -31,6 +32,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/toast" element={<ToastTester />} />
         <Route
           path="/create"
           element={

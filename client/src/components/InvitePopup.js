@@ -4,6 +4,10 @@ import Modal from "@material-ui/core/Modal";
 import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
 import SendIcon from "@material-ui/icons/Send";
+import roomApi from "../apis/rooms";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+toast.configure();
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -27,9 +31,34 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const InvitePopup = ({ open, handleChange }) => {
+const InvitePopup = ({ open, handleChange, roomid }) => {
   const styles = useStyles();
+  const [user, setUser] = useState("");
 
+  const handleSubmit = async () => {
+    const result = await roomApi.addMember(roomid, user);
+    if (result.data.status === "ok") {
+      toast.success(`Invitation Successful!`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      toast.error(`Invitation Failed!`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
   return (
     <div>
       <Modal open={open}>
@@ -41,6 +70,7 @@ const InvitePopup = ({ open, handleChange }) => {
               label="E-mail"
               variant="filled"
               className={styles.textfield}
+              onChange={(e) => setUser(e.target.value)}
             />
             <Button
               variant="contained"
@@ -49,6 +79,7 @@ const InvitePopup = ({ open, handleChange }) => {
                 marginLeft: 10,
               }}
               endIcon={<SendIcon />}
+              onClick={handleSubmit}
             >
               SEND
             </Button>

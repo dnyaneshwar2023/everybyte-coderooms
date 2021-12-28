@@ -1,27 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import Collapse from "@material-ui/core/Collapse";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import DraftsIcon from "@material-ui/icons/Drafts";
-import SendIcon from "@material-ui/icons/Send";
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import ExpandMore from "@material-ui/icons/ExpandMore";
-import StarBorder from "@material-ui/icons/StarBorder";
-
+import roomApi from "../apis/rooms";
 import RoomItem from "./RoomItem";
-
+import useAuth from "../auth/useAuth";
+import ListContext from "../hooks/roomlist/context";
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: "auto",
-    marginLeft: 40,
+    marginLeft: "auto",
     marginTop: 20,
     width: "100%",
-    maxWidth: 700,
+    maxWidth: 1000,
     backgroundColor: theme.palette.background.paper,
     alignSelf: "center",
   },
@@ -32,7 +23,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Listings() {
   const classes = useStyles();
+  const [list, setList] = useState([]);
+  const value = { list, setList };
+  const { user } = useAuth();
 
+  const getList = async () => {
+    const data = await roomApi.getAllRooms(user.email);
+    return data.data;
+  };
+  useEffect(() => {
+    getList().then((rooms) => {
+      setList(rooms.data);
+    });
+  }, []);
   return (
     <List
       component="nav"
@@ -45,22 +48,19 @@ export default function Listings() {
       className={classes.root}
       style={{ maxHeight: "100%", overflow: "hidden" }}
     >
-      <RoomItem />
-      <RoomItem />
-      <RoomItem />
-      <RoomItem />
-      <RoomItem />
-      <RoomItem />
-      <RoomItem />
-      <RoomItem />
-      <RoomItem />
-      <RoomItem />
-      <RoomItem />
-      <RoomItem />
-      <RoomItem />
-      <RoomItem />
-      <RoomItem />
-      <RoomItem />
+      {list.map((item) => {
+        return (
+          <div key={item.roomid}>
+            <ListContext.Provider value={value}>
+              <RoomItem
+                title={item.title}
+                date={item.date}
+                roomid={item.roomid}
+              />
+            </ListContext.Provider>
+          </div>
+        );
+      })}
     </List>
   );
 }
