@@ -34,20 +34,27 @@ const RoomItem = ({
     setOpen(!open);
   };
   return (
-    <>
+    <div style={{ marginTop: 7 }}>
       <ListItem button onClick={handleClick}>
         <ListItemIcon>
           <CodeIcon />
         </ListItemIcon>
-        <ListItemText primary={title} />
-        <ListItemText secondary={roomid} />
-        <ListItemText secondary={date} />
+        <div style={{ width: "40%" }}>
+          <ListItemText primary={title} />
+        </div>
+        <div style={{ width: "30%", marginLeft: 20 }}>
+          <ListItemText secondary={roomid} />
+        </div>
+        <div style={{ width: "30%" }}>
+          <ListItemText secondary={date} />
+        </div>
+
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <RoomSubItem roomid={roomid} />
       </Collapse>
-    </>
+    </div>
   );
 };
 

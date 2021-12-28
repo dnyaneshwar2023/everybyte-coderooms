@@ -28,7 +28,7 @@ roomRoute.get("/data", async (req, res) => {
 });
 
 roomRoute.get("/list", async (req, res) => {
-  const { user } = req.params;
+  const { user } = req.query;
 
   try {
     const result = await prisma.rooms.findMany({
@@ -52,9 +52,7 @@ roomRoute.post("/create", async (req, res) => {
   var date = new Date();
   date = date.toLocaleString();
   data.date = date.toString();
-  console.log("====================================");
-  console.log(data);
-  console.log("====================================");
+
   try {
     const result = await prisma.rooms.create({
       data: data,
@@ -65,7 +63,6 @@ roomRoute.post("/create", async (req, res) => {
       message: "Room created successfully",
     });
   } catch (error) {
-    console.log(error);
     res.status(400).send({
       status: "failed",
       message: "Room creation failed",
@@ -97,15 +94,12 @@ roomRoute.post("/update", async (req, res) => {
 
 roomRoute.delete("/delete", async (req, res) => {
   const { roomid } = req.body;
-  console.log(req);
-  console.log(roomid);
   try {
     const result = await prisma.rooms.deleteMany({
       where: {
         roomid: roomid,
       },
     });
-    console.log(result);
     res.status(200).send({
       status: "ok",
     });

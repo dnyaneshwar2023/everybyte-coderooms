@@ -15,10 +15,8 @@ memberRoute.post("/add", async (req, res) => {
     const result = await prisma.collaborator.create({
       data: data,
     });
-    console.log(result);
     res.status(201).send({ status: "ok" });
   } catch (error) {
-    console.log(error);
     res.status(404).send({ status: "failed" });
   }
 });

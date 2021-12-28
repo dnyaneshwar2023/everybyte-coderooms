@@ -55,7 +55,6 @@ io.adapter(
 );
 
 io.on("connection", (client) => {
-  console.log("User Joined");
   client.on("join", (roomid) => {
     client.join(roomid);
   });
