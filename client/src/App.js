@@ -21,11 +21,6 @@ function App() {
   const store = { user, setUser };
   const drawerStore = { drawer, setDrawer };
 
-  // const restoreUser = () => {
-  //   setLoaded(true);
-  //   setUser();
-  // };
-
   return (
     <>
       <AuthContext.Provider value={store}>

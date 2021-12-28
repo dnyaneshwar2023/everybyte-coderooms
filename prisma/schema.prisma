@@ -1,0 +1,26 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Rooms {
+  title  String
+  roomid String @unique
+  owner  String
+  value  String @default("")
+  date   String
+  locked String @default("true")
+}
+
+model Collaborator {
+  id     Int    @id @default(autoincrement())
+  roomid String
+  user   String
+}

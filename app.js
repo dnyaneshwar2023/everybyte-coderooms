@@ -5,10 +5,10 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const redisAdapter = require("socket.io-redis");
 const { OAuth2Client } = require("google-auth-library");
-
+const { roomRoute } = require("./routes/room.js");
+const { memberRoute } = require("./routes/members");
 const app = express();
-const CLIENT_ID =
-  "703956863946-em6dt95q7vcjrock2qbkvafa6ge057kq.apps.googleusercontent.com";
+const CLIENT_ID = process.env.CLIENT_ID;
 
 const client = new OAuth2Client(CLIENT_ID);
 
@@ -17,6 +17,9 @@ const client = new OAuth2Client(CLIENT_ID);
 app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
+app.use("/room", roomRoute);
+app.use("/member", memberRoute);
+
 app.use(express.static(path.join(__dirname, "client/build")));
 
 const port = process.env.PORT || 5000;
