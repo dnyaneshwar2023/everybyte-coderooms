@@ -27,7 +27,6 @@ import MicOffIcon from "@material-ui/icons/MicOff";
 import { useState } from "react";
 import "../index.css";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { useParams } from "react-router-dom";
 import { rtc, startBasicCall } from "./JoinAudio";
 import { socket } from "./socketConnection";
 import SaveIcon from "@material-ui/icons/Save";
@@ -40,12 +39,12 @@ import FontSizeSelector from "../components/FontSizeSelector";
 import ThemeSelector from "../components/ThemeSelector";
 toast.configure();
 
-function Editor() {
+function Editor({ roomid }) {
   // usestate Hooks
-  const { roomid } = useParams();
+
   const { user } = useAuth();
 
-  useEffect(async () => {
+  useEffect(() => {
     socket.emit("join", roomid);
     startBasicCall(roomid);
   }, []);

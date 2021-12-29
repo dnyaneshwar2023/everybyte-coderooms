@@ -14,6 +14,7 @@ import DrawerConext from "./hooks/Drawer/context";
 import Sidebar from "./components/Sidebar";
 import Dashboard from "./pages/Dashboard";
 import ToastTester from "./pages/ToastTester";
+import EditPage from "./pages/EditPage";
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -32,7 +33,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/toast" element={<ToastTester />} />
+
         <Route
           path="/create"
           element={
@@ -53,7 +54,7 @@ function App() {
           path="/edit"
           element={
             <AuthContext.Provider value={store}>
-              {user != null ? <Editor /> : <Navigate to="/login" />}
+              {user != null ? <EditPage /> : <Navigate to="/login" />}
             </AuthContext.Provider>
           }
         >

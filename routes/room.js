@@ -9,7 +9,7 @@ const prisma = new PrismaClient();
 const roomRoute = express.Router();
 
 roomRoute.get("/data", async (req, res) => {
-  const { roomid } = req.body;
+  const { roomid } = req.query;
 
   try {
     const result = await prisma.rooms.findFirst({
@@ -56,6 +56,13 @@ roomRoute.post("/create", async (req, res) => {
   try {
     const result = await prisma.rooms.create({
       data: data,
+    });
+
+    const author = await prisma.collaborator.create({
+      data: {
+        roomid: data.roomid,
+        user: data.owner,
+      },
     });
 
     res.status(201).send({

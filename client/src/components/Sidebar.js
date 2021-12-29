@@ -8,6 +8,7 @@ import CalendarTodayTwoToneIcon from "@material-ui/icons/CalendarTodayTwoTone";
 import AccountBoxOutlinedIcon from "@material-ui/icons/AccountBoxOutlined";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { Button } from "@material-ui/core";
+import DashboardIcon from "@material-ui/icons/Dashboard";
 
 import AccountItem from "./AccountItem";
 import SidebarItem from "./SidebarItem";
@@ -33,21 +34,30 @@ const Sidebar = () => {
       open={drawer}
       classes={{ paper: styles.paper }}
     >
-      <AccountItem username={user?.email} />
+      <AccountItem username={user?.email} name={user?.name} />
       <SidebarItem
-        title={"Profile"}
-        IconComponent={<AccountBoxOutlinedIcon />}
-        onClick={() => navigate("/profile")}
+        title={"Dashboard"}
+        IconComponent={<DashboardIcon />}
+        onClick={() => {
+          toggleDrawer();
+          navigate("/dashboard");
+        }}
       />
       <SidebarItem
         title={"Create New"}
         IconComponent={<AddCircleIcon />}
-        onClick={() => navigate("/create")}
+        onClick={() => {
+          toggleDrawer();
+          navigate("/create");
+        }}
       />
       <SidebarItem
         title={"Join Room"}
         IconComponent={<ContactlessIcon />}
-        onClick={() => navigate("/join")}
+        onClick={() => {
+          toggleDrawer();
+          navigate("/join");
+        }}
       />
       <SidebarItem
         title={"Calendar"}
@@ -57,7 +67,10 @@ const Sidebar = () => {
       <SidebarItem
         title={"Log Out"}
         IconComponent={<ExitToAppTwoToneIcon />}
-        onClick={() => logOut()}
+        onClick={() => {
+          toggleDrawer();
+          logOut();
+        }}
       />
       <Button
         onClick={() => toggleDrawer()}

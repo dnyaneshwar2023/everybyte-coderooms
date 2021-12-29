@@ -22,7 +22,7 @@ memberRoute.post("/add", async (req, res) => {
 });
 
 memberRoute.get("/auth", async (req, res) => {
-  const { roomid, user } = req.params;
+  const { roomid, user } = req.query;
   try {
     const result = await prisma.collaborator.findFirst({
       where: {

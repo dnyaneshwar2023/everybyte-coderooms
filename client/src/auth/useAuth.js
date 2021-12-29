@@ -10,7 +10,7 @@ export default function useAuth() {
   const logIn = (authToken) => {
     const newUser = jwtDecode(authToken);
     setUser(newUser);
-    Cookies.set(key, authToken);
+    Cookies.set(key, authToken, { expires: 7 });
   };
 
   const logOut = () => {

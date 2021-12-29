@@ -1,10 +1,11 @@
 import React from "react";
 import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
 
-function AccountItem({ username = "dpw411200@yahoo.com" }) {
+function AccountItem({ username = "dpw411200@yahoo.com", name = "John Doe" }) {
   return (
     <div className="d-flex flex-column" style={styles.container}>
       <AccountCircleOutlinedIcon style={{ fontSize: 50 }} />
+      <div style={styles.user}>{name}</div>
       <div style={styles.user}>{username}</div>
     </div>
   );
