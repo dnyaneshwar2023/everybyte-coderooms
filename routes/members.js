@@ -1,7 +1,6 @@
 const express = require("express");
-
 const Prisma = require("@prisma/client");
-
+const sendInvitation = require("../mailer/mailer");
 const { PrismaClient } = Prisma;
 
 const prisma = new PrismaClient();
@@ -9,12 +8,16 @@ const prisma = new PrismaClient();
 const memberRoute = express.Router();
 
 memberRoute.post("/add", async (req, res) => {
-  const data = req.body;
+  const { roomid, recipient, user, roomname } = req.body;
 
   try {
     const result = await prisma.collaborator.create({
-      data: data,
+      data: {
+        roomid: roomid,
+        user: recipient,
+      },
     });
+    await sendInvitation(roomid, roomname, recipient, user);
     res.status(201).send({ status: "ok" });
   } catch (error) {
     res.status(404).send({ status: "failed" });

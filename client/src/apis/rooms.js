@@ -14,8 +14,13 @@ const saveCode = (roomid, value) => {
   return axios.post("/room/update", { roomid, value });
 };
 
-const addMember = (roomid, user) => {
-  return axios.post("http://localhost:5000/member/add", { roomid, user });
+const addMember = (roomid, roomname, recipient, user) => {
+  return axios.post("http://localhost:5000/member/add", {
+    roomid,
+    roomname,
+    recipient,
+    user,
+  });
 };
 
 const authMember = (roomid, user) => {

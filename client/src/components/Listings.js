@@ -52,11 +52,7 @@ export default function Listings() {
         return (
           <div key={item.roomid}>
             <ListContext.Provider value={value}>
-              <RoomItem
-                title={item.title}
-                date={item.date}
-                roomid={item.roomid}
-              />
+              <RoomItem room={item} />
             </ListContext.Provider>
           </div>
         );

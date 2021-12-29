@@ -5,6 +5,8 @@ import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
 import SendIcon from "@material-ui/icons/Send";
 import roomApi from "../apis/rooms";
+import useAuth from "../auth/useAuth";
+
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 toast.configure();
@@ -31,12 +33,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const InvitePopup = ({ open, handleChange, roomid }) => {
+const InvitePopup = ({ open, handleChange, room }) => {
   const styles = useStyles();
-  const [user, setUser] = useState("");
+  const { user } = useAuth();
+  const [recipient, setRecipient] = useState("");
 
   const handleSubmit = async () => {
-    const result = await roomApi.addMember(roomid, user);
+    const result = await roomApi.addMember(
+      room.roomid,
+      room.title,
+      recipient,
+      user.name
+    );
     if (result.data.status === "ok") {
       toast.success(`Invitation Successful!`, {
         position: "top-right",
@@ -70,7 +78,7 @@ const InvitePopup = ({ open, handleChange, roomid }) => {
               label="E-mail"
               variant="filled"
               className={styles.textfield}
-              onChange={(e) => setUser(e.target.value)}
+              onChange={(e) => setRecipient(e.target.value)}
             />
             <Button
               variant="contained"

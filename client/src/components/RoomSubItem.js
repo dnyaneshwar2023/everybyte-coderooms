@@ -23,12 +23,12 @@ const styles = {
   },
 };
 
-const RoomSubItem = ({ roomid }) => {
+const RoomSubItem = ({ room }) => {
   const navigate = useNavigate();
   const { removeItem } = useList();
   const [modal, setModal] = useState(false);
   const handleDelete = () => {
-    removeItem(roomid);
+    removeItem(room.roomid);
   };
   return (
     <>
@@ -36,7 +36,7 @@ const RoomSubItem = ({ roomid }) => {
         <div style={styles.item} className="d-flex flex-column text-center">
           <Button
             style={{ color: "blue" }}
-            onClick={() => navigate(`/edit/${roomid}`)}
+            onClick={() => navigate(`/edit/${room.roomid}`)}
           >
             <EditRoundedIcon />
           </Button>
@@ -52,7 +52,7 @@ const RoomSubItem = ({ roomid }) => {
           </Button>
         </div>
       </div>
-      <InvitePopup open={modal} roomid={roomid} handleChange={setModal} />
+      <InvitePopup open={modal} room={room} handleChange={setModal} />
     </>
   );
 };

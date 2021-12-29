@@ -22,11 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const RoomItem = ({
-  title = "Coding Round",
-  roomid = "xcz_1hdsjhje",
-  date = "13-10-2021",
-}) => {
+const RoomItem = ({ room }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
@@ -40,19 +36,19 @@ const RoomItem = ({
           <CodeIcon />
         </ListItemIcon>
         <div style={{ width: "40%" }}>
-          <ListItemText primary={title} />
+          <ListItemText primary={room.title} />
         </div>
         <div style={{ width: "30%", marginLeft: 20 }}>
-          <ListItemText secondary={roomid} />
+          <ListItemText secondary={room.roomid} />
         </div>
         <div style={{ width: "30%" }}>
-          <ListItemText secondary={date} />
+          <ListItemText secondary={room.date} />
         </div>
 
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
-        <RoomSubItem roomid={roomid} />
+        <RoomSubItem room={room} />
       </Collapse>
     </div>
   );
