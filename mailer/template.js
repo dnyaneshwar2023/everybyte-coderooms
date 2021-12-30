@@ -9,7 +9,7 @@ const makeMessage = (roomid, roomname, user) => {
 <p style="font-size:15px;">Click the below link to start contributing.
 You can also copy the roomid and use option of Join Room. Before make sure you sign up on platform using this E-mail.</p>
 
-<h2> Link : <a href="https://localhost:5000/edit/abcd">Click to Access Room</a></h2>
+<h2> Link : <a href="https://everybyte-rooms.herokuapp.com/edit${roomid}">Click to Access Room</a></h2>
 
 <h3>Happy Coding👨‍💻💻!!<br>
 <br>

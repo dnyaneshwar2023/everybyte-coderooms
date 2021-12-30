@@ -107,6 +107,13 @@ roomRoute.delete("/delete", async (req, res) => {
         roomid: roomid,
       },
     });
+
+    const deleteResponse = await prisma.collaborator.deleteMany({
+      where: {
+        roomid: roomid,
+      },
+    });
+
     res.status(200).send({
       status: "ok",
     });

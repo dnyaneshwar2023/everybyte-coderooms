@@ -1,59 +1,56 @@
-.main_nav{
-  
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Roboto:wght@300&display=swap");
+.main_nav {
 }
 
-.mw-120{
+.mw-120 {
   min-width: 200px;
 }
 
-.options{
+.options {
   margin-right: 0px;
 }
 
-#navbarSupportedContent{
-
+#navbarSupportedContent {
 }
-.resizable{
-  resize:both;
-  overflow:scroll;
-  
+.resizable {
+  resize: both;
+  overflow: scroll;
 }
 
-.active_tab{
+.active_tab {
   font-weight: bold;
   border-bottom: 2px solid greenyellow;
 }
-.texteditor{
+.texteditor {
   border-style: groove;
   border-color: black;
-
 }
 
-#icons{
+#icons {
   width: 100px;
   height: 40px;
-  margin-top: 20px;  
+  margin-top: 20px;
 }
-.img{
+.img {
   width: 600px;
   margin-left: 20px;
 }
 
-.createbutton{
+.createbutton {
   width: 100px;
 }
 
-.mainbtn{
+.mainbtn {
   width: 200px;
   height: 50px;
 }
 
-.error{
-  height:40vh;
+.error {
+  height: 40vh;
   width: 60%;
 }
 
-.card:hover{
+.card:hover {
   transform: scale(1.02);
   box-shadow: 5px 5px 20px black;
 }

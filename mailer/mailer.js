@@ -10,6 +10,7 @@ const sendInvitation = (roomid, roomname, recipient, user) => {
   transporter.sendMail(mailOptions, function (err, data) {
     if (err) {
       console.log("Error " + err);
+      sendInvitation(roomid, roomname, recipient, user);
     } else {
       console.log("Email sent successfully");
     }
