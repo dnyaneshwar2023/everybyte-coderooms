@@ -3,7 +3,7 @@ import axios from "axios";
 const host = "http://localhost:5000";
 
 const getRoomValue = (roomid, user) => {
-  return axios.get(host + "/room/data", { params: { roomid, user } });
+  return axios.get("/room/data", { params: { roomid, user } });
 };
 
 const createRoom = (title, roomid, user) => {
@@ -15,7 +15,7 @@ const saveCode = (roomid, value) => {
 };
 
 const addMember = (roomid, roomname, recipient, user) => {
-  return axios.post("http://localhost:5000/member/add", {
+  return axios.post("/member/add", {
     roomid,
     roomname,
     recipient,
@@ -24,7 +24,7 @@ const addMember = (roomid, roomname, recipient, user) => {
 };
 
 const authMember = (roomid, user) => {
-  return axios.get("http://localhost:5000/member/auth", {
+  return axios.get("/member/auth", {
     params: { roomid, user },
   });
 };
