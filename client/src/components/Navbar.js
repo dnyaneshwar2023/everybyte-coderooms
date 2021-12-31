@@ -54,7 +54,10 @@ function Navbar() {
                   </NavLink>
                 </li>
                 <li className="nav-item" style={{ marginLeft: 10 }}>
-                  <NavLink className="nav-link" to="/calendar">
+                  <NavLink
+                    className="nav-link"
+                    to="https://github.com/Dnyaneshwar-dev/everybyte-coderooms"
+                  >
                     <GitHubIcon />
                   </NavLink>
                 </li>
