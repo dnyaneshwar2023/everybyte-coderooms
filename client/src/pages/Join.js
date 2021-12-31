@@ -4,16 +4,22 @@ import Input from "@material-ui/core/Input";
 import { InputLabel } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
+import Lottie from "react-lottie";
+
+import Progress from "../animations/progress.json";
+
 function Join() {
   const [code, changeCode] = useState("");
+  const [progress, setProgress] = useState(false);
   const navigate = useNavigate();
   const joinRoom = () => {
+    setProgress(false);
     navigate(`/edit/${code}`);
   };
 
   return (
     <>
-      <div className="row  w-100 justify-content-center mt-lg-5">
+      <div className="row  w-100 justify-content-center align-items-center mt-lg-5 d-flex">
         <div className="col mx-auto mt-5 text-center">
           <h2>Join Using Room Code</h2>
           <br />
@@ -26,7 +32,7 @@ function Join() {
                 changeCode(e.target.value);
                 console.log(code);
               }}
-              required="true"
+              required
             ></Input>
             <br />
             <br />
@@ -36,18 +42,32 @@ function Join() {
               variant="outlined"
               color="primary"
               onClick={(event) => {
+                if (!code) return null;
+                setProgress(true);
                 event.preventDefault();
                 if (code) {
-                  console.log("hello");
                   joinRoom();
                 }
               }}
             >
-              {" "}
               Join
-              <CodeIcon />{" "}
+              <CodeIcon />
             </Button>
           </form>
+          {progress && (
+            <Lottie
+              options={{
+                animationData: Progress,
+                loop: true,
+                autoplay: true,
+              }}
+              height={100}
+              width={200}
+              style={{
+                marginTop: 10,
+              }}
+            />
+          )}
         </div>
       </div>
     </>

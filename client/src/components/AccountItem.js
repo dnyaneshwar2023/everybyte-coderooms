@@ -6,14 +6,14 @@ function AccountItem({ username = "dpw411200@yahoo.com", name = "John Doe" }) {
     <div className="d-flex flex-column" style={styles.container}>
       <AccountCircleOutlinedIcon style={{ fontSize: 50 }} />
       <div style={styles.user}>{name}</div>
-      <div style={styles.user}>{username}</div>
+      <div style={styles.email}>{username}</div>
     </div>
   );
 }
 
 const styles = {
   container: {
-    color: "blue",
+    color: "black",
     margin: 10,
     alignItems: "center",
     justifyContent: "center",
@@ -23,7 +23,14 @@ const styles = {
   },
   user: {
     marginTop: 5,
+    fontSize: "1.5vw",
+    textAlign: "justify",
+  },
+  email: {
+    fontWeight: 10,
+    fontSize: "0.9vw",
     fontWeight: "bold",
+    margin: 2,
   },
 };
 

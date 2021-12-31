@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles({
   paper: {
-    width: "auto",
+    width: 250,
   },
 });
 const Sidebar = () => {
@@ -62,6 +62,10 @@ const Sidebar = () => {
       <SidebarItem
         title={"Calendar"}
         IconComponent={<CalendarTodayTwoToneIcon />}
+        onClick={() => {
+          toggleDrawer();
+          navigate("/calendar");
+        }}
       />
 
       <SidebarItem
