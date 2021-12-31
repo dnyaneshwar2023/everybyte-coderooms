@@ -63,7 +63,11 @@ function Navbar() {
                       alignContent: "center",
                       justifyContent: "center",
                     }}
-                    onClick={() => console.log("Hi")}
+                    onClick={() => {
+                      window.location.href =
+                        "https://github.com/Dnyaneshwar-dev/everybyte-coderooms";
+                      return null;
+                    }}
                   >
                     <GitHubIcon
                       className="nav-link"
