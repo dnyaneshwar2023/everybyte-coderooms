@@ -1,9 +1,17 @@
 # everybyte-coderooms
 
-<img src="./readme-images/1.png"> 
+    Everybyte Coderooms nakes your coding discussion easy using collaborative code editor and features like running the code, Voice Chat, Saving the code for further use and many more...
+
+## Live at : <a href="https://everybyte-coderooms.herokuapp.com">https://everybyte-coderooms.herokuapp.com</a>
+
+<img src="./readme-images/1.png">
+
 ## Sign In using Google
-<img src="./readme-images/2.png"> 
+
+<img src="./readme-images/2.png">
+
 ## Creating new room
+
 <img src="./readme-images/4.png">
 
 ## Code Editor
