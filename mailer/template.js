@@ -1,5 +1,5 @@
 const host =
-  process.env.prod === "production"
+  process.env.NODE_ENV === "production"
     ? "https://everybyte-rooms.herokuapp.com"
     : "http://127.0.0.1:5000";
 
