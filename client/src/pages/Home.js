@@ -20,12 +20,12 @@ function Home() {
     <>
       <div
         className="row  w-100 justify-content-center mt-lg-5"
-        style={{ fontFamily: "Nunito", fontWeight: "bold" }}
+        style={{ fontFamily: "sans-serif", fontWeight: "bold" }}
       >
         <div className="col mx-auto mt-5 text-center d-flex flex-column">
           <h1
             style={{
-              fontFamily: "Nunito",
+              fontFamily: "sans-serif",
               fontWeight: "bold",
             }}
           >
@@ -34,7 +34,7 @@ function Home() {
           <br />
           <h2
             style={{
-              fontFamily: "Nunito",
+              fontFamily: "sans-serif",
               fontWeight: "bold",
             }}
           >
@@ -85,12 +85,12 @@ function Home() {
         className="d-flex justify-content-center mt-5"
         style={{
           fontWeight: "bold",
-          fontFamily: "Nunito",
+          fontFamily: "sans-serif",
         }}
       >
         <h2
           style={{
-            fontFamily: "Nunito",
+            fontFamily: "sans-serif",
             fontWeight: "bold",
             marginTop: 40,
           }}
@@ -113,7 +113,7 @@ function Home() {
             width: "40%",
             marginTop: "5%",
             fontSize: 20,
-            fontFamily: "Nunito",
+            fontFamily: "sans-serif",
             textAlign: "justify",
           }}
         >

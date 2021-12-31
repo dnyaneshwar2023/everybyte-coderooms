@@ -1,3 +1,8 @@
+const host =
+  process.env.prod === "production"
+    ? "https://everybyte-rooms.herokuapp.com"
+    : "http://127.0.0.1:5000";
+
 const makeMessage = (roomid, roomname, user) => {
   const message = `<h2>Hello from Everybyte👋,</h2>
   <p style="font-size:15px;">Hi Coder,</p>
@@ -9,7 +14,7 @@ const makeMessage = (roomid, roomname, user) => {
 <p style="font-size:15px;">Click the below link to start contributing.
 You can also copy the roomid and use option of Join Room. Before make sure you sign up on platform using this E-mail.</p>
 
-<h2> Link : <a href="host/edit/${roomid}">Click to Access Room</a></h2>
+<h2> Link : <a href="${host}/edit/${roomid}">Click to Access Room</a></h2>
 
 <h3>Happy Coding👨‍💻💻!!<br>
 <br>

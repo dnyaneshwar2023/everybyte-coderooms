@@ -30,7 +30,7 @@ const RoomItem = ({ room }) => {
     setOpen(!open);
   };
   return (
-    <div style={{ marginTop: 7 }}>
+    <div style={{ marginTop: 7, fontFamily: "monospace" }}>
       <ListItem button onClick={handleClick}>
         <ListItemIcon>
           <CodeIcon />

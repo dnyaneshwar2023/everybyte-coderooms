@@ -58,27 +58,29 @@ export default function Listings() {
           }}
         />
       )}
-      <List
-        component="nav"
-        aria-labelledby="nested-list-subheader"
-        subheader={
-          <ListSubheader component="div" id="nested-list-subheader">
-            Recent Rooms
-          </ListSubheader>
-        }
-        className={classes.root}
-        style={{ maxHeight: "100%", overflow: "hidden" }}
-      >
-        {list.map((item) => {
-          return (
-            <div key={item.roomid}>
-              <ListContext.Provider value={value}>
-                <RoomItem room={item} />
-              </ListContext.Provider>
-            </div>
-          );
-        })}
-      </List>
+      {progress === false && (
+        <List
+          component="nav"
+          aria-labelledby="nested-list-subheader"
+          subheader={
+            <ListSubheader component="div" id="nested-list-subheader">
+              Recent Rooms
+            </ListSubheader>
+          }
+          className={classes.root}
+          style={{ maxHeight: "100%", overflow: "hidden" }}
+        >
+          {list.map((item) => {
+            return (
+              <div key={item.roomid}>
+                <ListContext.Provider value={value}>
+                  <RoomItem room={item} />
+                </ListContext.Provider>
+              </div>
+            );
+          })}
+        </List>
+      )}
     </>
   );
 }

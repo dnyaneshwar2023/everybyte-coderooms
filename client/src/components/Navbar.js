@@ -2,8 +2,10 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import EventIcon from "@material-ui/icons/Event";
 import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
-import useDrawer from "../hooks/Drawer/useDrawer";
 import { Button } from "@material-ui/core";
+import GitHubIcon from "@material-ui/icons/GitHub";
+import useDrawer from "../hooks/Drawer/useDrawer";
+
 import useAuth from "../auth/useAuth";
 
 function Navbar() {
@@ -46,19 +48,24 @@ function Navbar() {
                   </NavLink>
                 </li>
 
-                <li className="nav-item">
+                <li className="nav-item" style={{ marginLeft: 10 }}>
                   <NavLink className="nav-link" to="/about">
                     About
                   </NavLink>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item" style={{ marginLeft: 10 }}>
+                  <NavLink className="nav-link" to="/calendar">
+                    <GitHubIcon />
+                  </NavLink>
+                </li>
+                <li className="nav-item" style={{ marginLeft: 10 }}>
                   <NavLink className="nav-link" to="/calendar">
                     <EventIcon />
                   </NavLink>
                 </li>
 
                 {user ? (
-                  <li className="nav-item mt-2">
+                  <li className="nav-item mt-2" style={{ marginLeft: 10 }}>
                     <Button
                       onClick={() => toggleDrawer()}
                       style={{
