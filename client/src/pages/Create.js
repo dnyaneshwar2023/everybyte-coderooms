@@ -34,7 +34,7 @@ function Create() {
     <>
       <div className="row  w-100 justify-content-center align-items-center mt-lg-5 d-flex">
         <div className="col mx-auto mt-5 text-center">
-          <h2>Create New Paste</h2>
+          <h2>Create New Room</h2>
           <br />
 
           <InputLabel variant="standard" color="secondary">
