@@ -1,6 +1,6 @@
 # everybyte-coderooms
 
-Everybyte Coderooms nakes your coding discussions easy using collaborative code editor and features like running the code, Voice Chat, Saving the code for further use and many more...
+Everybyte Coderooms makes your coding discussions easy using collaborative code editor and features like running the code, Voice Chat, Saving the code for further use and many more...
 
 Technologies Used:
 
