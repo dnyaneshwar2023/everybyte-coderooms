@@ -15,6 +15,7 @@ import Sidebar from "./components/Sidebar";
 import Dashboard from "./pages/Dashboard";
 import ToastTester from "./pages/ToastTester";
 import EditPage from "./pages/EditPage";
+import Board from "./components/Board";
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -33,6 +34,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/board" element={<Board />} />
 
         <Route
           path="/create"

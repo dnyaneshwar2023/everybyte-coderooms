@@ -7,12 +7,18 @@ import Progress from "../animations/progress.json";
 import roomApi from "../apis/rooms";
 import LockedAnimation from "../animations/locked.json";
 import Editor from "./Editor";
-
+import Board from "../components/Board";
+import { Button } from "@material-ui/core";
+import BorderColorIcon from "@material-ui/icons/BorderColor";
+import CodeIcon from "@material-ui/icons/Code";
 const EditPage = () => {
   const [progress, setProgress] = useState(true);
   const [authorized, setAuthorized] = useState();
   const { user } = useAuth();
   const { roomid } = useParams();
+  const [editor, setEditor] = useState(true);
+  const [board, setBoard] = useState(false);
+
   useEffect(() => {
     roomApi.authMember(roomid, user.email).then(
       (res) => {
@@ -74,7 +80,40 @@ const EditPage = () => {
           </h2>
         </div>
       )}
+      {authorized === true && (
+        <div>
+          <Button
+            variant="outlined"
+            color={editor ? "primary" : "secondary"}
+            onClick={() => {
+              setEditor(true);
+              setBoard(false);
+            }}
+            size="small"
+            style={{ marginLeft: 15, marginTop: 5 }}
+          >
+            <CodeIcon />
+          </Button>
+          <Button
+            variant="outlined"
+            color={board ? "primary" : "secondary"}
+            onClick={() => {
+              setEditor(false);
+              setBoard(true);
+            }}
+            size="small"
+            style={{ marginLeft: 10, marginTop: 5 }}
+          >
+            <BorderColorIcon />
+          </Button>
+        </div>
+      )}
       {authorized === true && <Editor roomid={roomid} />}
+      {authorized === true && board === true && (
+        <div className="container border border-dark">
+          <Board />
+        </div>
+      )}
     </>
   );
 };

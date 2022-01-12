@@ -172,7 +172,7 @@ function Editor({ roomid }) {
 
   return (
     <div>
-      <div className="row mt-3 w-100">
+      <div className="row mt-1 w-100">
         <div className="col resizable">
           <AceEditor
             className="texteditor m-3"
