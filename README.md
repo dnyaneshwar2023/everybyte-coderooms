@@ -11,7 +11,7 @@ Technologies Used:
 - OAuth 2.0
 - Redis Pub/Sub
 
-## Live at : <a href="https://everybyte-coderooms.herokuapp.com">https://everybyte-coderooms.herokuapp.com</a>
+## Live at : <a href="https://coderooms.onrender.com">https://coderooms.onrender.com</a>
 
 <img src="./readme-images/1.png">
 
