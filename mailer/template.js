@@ -1,6 +1,6 @@
 const host =
   process.env.NODE_ENV === "production"
-    ? "https://everybyte-coderooms.herokuapp.com"
+    ? process.env.HOST
     : "http://127.0.0.1:5000";
 
 const makeMessage = (roomid, roomname, user) => {
