@@ -1,4 +1,6 @@
 const express = require("express");
+const dotenv = require("dotenv");
+dotenv.config();
 const cors = require("cors");
 const socket = require("socket.io");
 const path = require("path");
@@ -53,6 +55,8 @@ const io = socket(server, {
 // io.adapter(
 //   redisAdapter({ host: process.env.REDIS_HOST || "127.0.0.1", port: 6379 })
 // );
+
+console.log(process.env.CLIENT_ID)
 
 io.on("connection", (client) => {
   client.on("join", (roomid) => {
