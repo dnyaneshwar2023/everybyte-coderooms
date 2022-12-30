@@ -56,7 +56,7 @@ const io = socket(server, {
 //   redisAdapter({ host: process.env.REDIS_HOST || "127.0.0.1", port: 6379 })
 // );
 
-console.log(process.env.CLIENT_ID)
+console.log(process.env.HOST)
 
 io.on("connection", (client) => {
   client.on("join", (roomid) => {

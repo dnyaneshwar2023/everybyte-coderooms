@@ -1,7 +1,5 @@
-const host =
-  process.env.NODE_ENV === "production"
-    ? process.env.HOST
-    : "http://127.0.0.1:5000";
+const host = process.env.HOST
+
 
 const makeMessage = (roomid, roomname, user) => {
   const message = `<h2>Hello from Everybyte👋,</h2>
